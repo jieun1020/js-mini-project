@@ -1,7 +1,20 @@
 
 const productContainer = document.querySelector('.products-container');
 const btnContainerEl = document.querySelector('.companies');
+const formEl = document.querySelector('.input-form');
+const searchEl = document.querySelector('.search-input');
 
+
+formEl.addEventListener('keyup',() =>{
+    let serchValue = searchEl.value;
+
+    let serchProduct = products.filter((product)=>{
+        return product.title.toLowerCase().includes(serchValue.toLowerCase());
+    })
+
+    console.log("serchProduct",serchProduct);
+    displayProducts(serchProduct);
+})
 
 window.addEventListener('DOMContentLoaded', ()=>{
     displayProducts(products);
@@ -33,7 +46,7 @@ function displayBtnItem(menu){
             acc.push(curr.company);
         }
         return acc;
-    },[])
+    },["all"])
 
     console.log('카테고리', categories)
     const categoryBtn = categories.map((category)=>{
